@@ -14,7 +14,6 @@ import { ButtonComponent } from '../components/button/button.component';
 import { PaginationComponent } from '../components/pagination/pagination.component';
 import { ComboxComponent } from '../components/combox/combox.component';
 import { ComboxOptionComponent } from '../components/combox/combox.option.component';
-import { ModalCustomizeComponent } from '../components/dialog/dialog.customize.component';
 
 import { IconComponent } from '../components/icon/icon.component';
 import { TreeComponent } from '../components/tree/tree.component';
@@ -27,6 +26,7 @@ import { LoadingComponent } from '../components/loading/loading.component';
 import { LoadingDirective } from '../directives/loading.directive';
 import { TabItemComponent } from '../components/tabs/tab-item/tab-item.component';
 import { TabsComponent } from '../components/tabs/tabs.component';
+import { InputNumberComponent } from '../components/input-number/input-number.component';
 import { SurveyInputDirective } from '../directives/surveyInput.directive';
 
 const components = [
@@ -34,7 +34,6 @@ const components = [
     TreeComponent,
     MenuComponent,
     ButtonComponent,
-    ModalCustomizeComponent,
     DialogComponent,
     CrumbComponent,
     CheckboxComponent,
@@ -45,7 +44,8 @@ const components = [
     ComboxComponent,
     ComboxOptionComponent,
     TabItemComponent,
-    TabsComponent
+    TabsComponent,
+    InputNumberComponent
 ];
 
 const directives = [
@@ -68,7 +68,7 @@ const directives = [
 
     providers: [SModalSubject, SModalService],
 
-    entryComponents: [DialogComponent, ModalCustomizeComponent, LoadingComponent],
+    entryComponents: [DialogComponent, LoadingComponent],
 
     exports: [
         ...components,

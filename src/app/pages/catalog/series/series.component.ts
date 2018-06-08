@@ -104,12 +104,12 @@ export class SeriesComponent {
     }
 
     // 导航到配置页
-    navigateToFeature() {
+    public navigateToFeature() {
         this.catalogService.navigateToFeature(this.getBrandSeriesParams());
     }
 
     // 发布车系code被改变
-    publicSeriesChange() {
+    public publicSeriesChange() {
         let series = this.series.filter(item => item.code == this.activeSeriesCode);
 
         if (series.length) {

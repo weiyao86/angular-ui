@@ -4,11 +4,8 @@ import { CdkConnectedOverlay } from '@angular/cdk/overlay';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ComboxOptionComponent } from './combox.option.component'
 import { isObject } from 'util';
+import { toBoolean } from '../../utils/common';
 
-//定义内部转换boolean函数
-export function toolBoolean(value: boolean | string): boolean {
-    return value === '' || (value && value !== "false");
-}
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -76,7 +73,7 @@ export class ComboxComponent implements OnInit, AfterContentInit, AfterContentCh
 
     @Input()
     set open(value: boolean) {
-        value = toolBoolean(value);
+        value = toBoolean(value);
 
         if (value === this.isOpen) return;
         if (value) {
@@ -91,7 +88,7 @@ export class ComboxComponent implements OnInit, AfterContentInit, AfterContentCh
 
     @Input()
     set disabled(value: boolean) {
-        value = toolBoolean(value);
+        value = toBoolean(value);
 
         if (value === this.idisabled) return;
         if (value) {
@@ -103,7 +100,7 @@ export class ComboxComponent implements OnInit, AfterContentInit, AfterContentCh
     //是否提供搜索
     @Input()
     set nsShowSearch(value: boolean) {
-        this.ishowSearch = toolBoolean(value);
+        this.ishowSearch = toBoolean(value);
     }
 
     get nsShowSearch(): boolean {
@@ -197,13 +194,12 @@ export class ComboxComponent implements OnInit, AfterContentInit, AfterContentCh
         if (isuserClick) {
             this.onChange(option.sValue);
         }
-
     }
 
     //双向绑定模式,数据发生变化时触发
     updateSelectedOption(currentModelValue: string | string[], triggerByNgModel: boolean = false): void {
-
         if (currentModelValue == null) return;
+
         const selectedOption = this.options.filter(item => {
             return (item != null) && (item.sValue == currentModelValue);
         });
@@ -228,7 +224,6 @@ export class ComboxComponent implements OnInit, AfterContentInit, AfterContentCh
     }
 
     updateFilterOption() {
-
         if (this.nsFilter) {
             if (this.searchText) {
                 let options = this.options.filter(option => (option.sName) && (option.sName.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1));
@@ -255,13 +250,11 @@ export class ComboxComponent implements OnInit, AfterContentInit, AfterContentCh
     }
 
     onSearchChange(searchValue: string): void {
-        console.log(this.searchText)
         this.nsSearchChange.emit(searchValue);
     }
 
     //实现  ControlValueAccessor接口方法(注册ngModel值改变时传的方法)
     registerOnChange(fn: (value: string | string[]) => void) {
-
         this.onChange = fn;
     }
 
@@ -278,7 +271,6 @@ export class ComboxComponent implements OnInit, AfterContentInit, AfterContentCh
     }
 
     ngOnInit(): void {
-
         this.updateFilterOption();
         this.setClassMap();
     }

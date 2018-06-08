@@ -7,7 +7,7 @@ import { CdkPortal, Portal, TemplatePortal, ComponentPortal, PortalInjector } fr
 
 
 import { Router } from '@angular/router';
-import { ModalCustomizeComponent } from '../../components/dialog/dialog.customize.component';
+//import { ModalCustomizeComponent } from '../../components/dialog/dialog.customize.component';
 import { ButtonComponent } from '../../components/button/button.component';
 // import { ComboxOptionComponent } from '../../components/combox/combox.option.component';
 import { SModalService } from '../../components/dialog/dialog.service';
@@ -68,7 +68,7 @@ export class CtestComponent implements AfterViewInit, OnInit {
         const subject = this.smodalservice.open({
             title: "使用自定义组件渲染",
             width: 600,
-            content: ModalCustomizeComponent,
+            content:'ssss',// ModalCustomizeComponent,
             okText: '确定',
             cancelText: '取消',
             onOk: () => {
@@ -85,7 +85,6 @@ export class CtestComponent implements AfterViewInit, OnInit {
             componentParams: {
                 name: '我是来渲染name的值'
             },
-
             style: {
                 top: '150px'
             }
@@ -118,7 +117,7 @@ export class CtestComponent implements AfterViewInit, OnInit {
     changePortal4() {
         // const portalInjector=this.icreateInjector();
         // this.currentPortal = new ComponentPortal(ModalCustomizeComponent,undefined,portalInjector);
-        this.currentPortal = new ComponentPortal(ModalCustomizeComponent);
+        //this.currentPortal = new ComponentPortal(ModalCustomizeComponent);
     }
 
     // icreateInjector(): PortalInjector {

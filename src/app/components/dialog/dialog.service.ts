@@ -46,10 +46,6 @@ export class SModalService {
 
         optionParams.forEach(key => {
             if (config[key] !== undefined) {
-                // const modalKey = 'ns' + key.replace(/^\w{1}/, (a) => {
-                //   return a.toLocaleUpperCase();
-                // });
-                // props[modalKey] = config[key];
                 props[key] = config[key];
             }
         });
@@ -119,14 +115,13 @@ export class SModalService {
         });
 
         Object.assign(instance, props, { visible: true });
-
         return subject;
     }
 
     open(config: ConfigInterface): SModalSubject {
-
         const options: ModalOptions = new ModalOptions();
         const props = this.initConfig(config, options);
+
         return this.ptopen(props, this.modalComponentFactory);
     }
 }

@@ -19,7 +19,6 @@ export class SModalSubject extends Subject<any> {
     eventsQueue = {};
 
     destroy(type: any = 'onCancel'): void {
-
         if (!this.isStopped && !this.closed) {
             this.next(type);
         }
@@ -36,8 +35,8 @@ export class SModalSubject extends Subject<any> {
     constructor() {
         super();
         this.subscribe((value: string) => {
-
             const eventQueue: Array<() => void> = this.eventsQueue[value] || [];
+
             eventQueue.forEach(cb => {
                 if (cb) {
                     cb();

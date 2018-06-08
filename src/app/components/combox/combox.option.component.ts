@@ -34,6 +34,7 @@ export class ComboxOptionComponent implements OnInit, OnDestroy {
         return this.iname;
     }
 
+    //TODO   禁用选项待实现
     // @Input()
     // set disabled(val: boolean) {
     //     if (this.iname == val) return;
@@ -49,9 +50,11 @@ export class ComboxOptionComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        //添加选项
         this.combox.addOption(this);
     }
     ngOnDestroy(): void {
+        //移除选项
         this.combox.removeOption(this);
     }
 }

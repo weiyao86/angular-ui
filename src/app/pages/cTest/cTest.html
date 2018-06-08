@@ -36,8 +36,7 @@
 
         <blockquote>
             <q>分页</q>
-            <s-pagination [pageSize]="0" [pageIndex]="0" [total]="50" (pageSizeChanger)="pageSizeChanger($event)" (pageIndexClickChange)="pageIndexClickChange($event)" (pageIndexChange)="pageIndexChange($event)"></s-pagination>
-            <!-- [pageSize]="105" [pageIndex]="3" [total]="0" -->
+            <s-pagination class="pp" nsShowTotal nsShowSizeChanger nsShowJumper [pageSize]="20" [pageIndex]="0" [total]="90" (pageSizeChanger)="pageSizeChanger($event)" (pageIndexClickChange)="pageIndexClickChange($event)" (pageIndexChange)="pageIndexChange($event)"></s-pagination>
         </blockquote>
         <form>
             No1.
@@ -74,7 +73,7 @@
         </div>
 
         <!-- <ng-template #arrowicon>.</ng-template>
-        <s-combox nsShowSearch style="width:300px;" [arrowIconTef]="arrowicon" [bodyStyleMap]="{'width':'300px','background':'#ccc'}" (nsSearchChange)="searchChange($event);" [(ngModel)]="selectedOption" (ngModelChange)="comboxChange(selectedOption);">
+        <s-combox nsShowSearch disabled style="width:300px;" [arrowIconTef]="arrowicon" [bodyStyleMap]="{'width':'300px','background':'#ccc'}" (nsSearchChange)="searchChange($event);" [(ngModel)]="selectedOption" (ngModelChange)="comboxChange(selectedOption);">
             <s-option *ngFor="let option of options" [sName]="option.name" [sValue]="option">
                 <ng-template #sOptionTemplate>
                     <span style="color:#f00;">{{option.name}}---{{option.value}}</span>
@@ -82,7 +81,7 @@
             </s-option>
         </s-combox> -->
 
-        <s-combox disabled nsShowSearch style="width:300px;" (nsSearchChange)="searchChange($event);" bodyClass="test abcdcls warp-cls" [(ngModel)]="selectedOption" (ngModelChange)="comboxChange(selectedOption);">
+        <s-combox nsShowSearch style="width:300px;" (nsSearchChange)="searchChange($event);" bodyClass="test abcdcls warp-cls" [(ngModel)]="selectedOption" (ngModelChange)="comboxChange(selectedOption);">
             <s-option *ngFor="let option of options" [sName]="option.name" [sValue]="option">
                 <ng-template #sOptionTemplate>
                     <span style="color:#c00;">{{option.name}}---{{option.value}}</span>

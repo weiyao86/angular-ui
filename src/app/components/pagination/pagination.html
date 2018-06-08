@@ -22,7 +22,7 @@
             <s-option *ngFor="let option of sizeOptions" [sName]="option" [sValue]="option"></s-option>
             <!-- <s-option *ngIf="sizeOptions.indexOf(pageSize) === -1" [sName]="pageSize" [sValue]="pageSize"></s-option> -->
         </s-combox>
-        <div class="pagination-options-quick-jumper">
+        <div class="pagination-options-quick-jumper" *ngIf="nsShowJumper">
             <label>{{jumpText}}<input type="text" [(ngModel)]="pageIndex" (ngModelChange)="onPageIndexChange($event)"></label>
 
         </div>

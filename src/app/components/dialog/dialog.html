@@ -3,9 +3,8 @@
     <div class="a-modal-wrap" [ngClass]="iwrapClassName" [ngStyle]="{'display':(!iVisible && !ianimateFadeStatus ? 'none' : '')}">
         <div #modalContent class="a-modal" [ngClass]="ibodyClassMap" [ngStyle]="bodyStyleMap">
             <div class="a-modal-content">
-
                 <div class="a-modal-close">
-                    <s-icon type="close" size="30px" (click)="close()"></s-icon>
+                    <s-icon type="close" style="font-size:30px;"  (click)="close()"></s-icon>
                 </div>
                 <div class="a-modal-header">
                     <div class="a-modal-title">

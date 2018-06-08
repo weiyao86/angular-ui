@@ -1,4 +1,5 @@
 import { OnInit, Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { toBoolean } from '../../utils/common';
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -7,7 +8,7 @@ import { OnInit, Component, ViewEncapsulation, Input, Output, EventEmitter } fro
     styleUrls: ['./pagination.scss']
 })
 
-export class PaginationComponent implements OnInit {
+export class PaginationComponent {
 
     icurrent: number = 1;
     ilastIndex: number = 1;
@@ -16,21 +17,23 @@ export class PaginationComponent implements OnInit {
     ipageSize: number = 20;
     pages: object[];
     sizeOptions = [10, 20, 30, 40, 50];
+    iShowSizeChanger=false;
+    iShowTotal=false;
+    iShowJumper=false;
 
     @Output() pageSizeChanger: EventEmitter<number> = new EventEmitter();
     @Output() pageIndexChange: EventEmitter<number> = new EventEmitter();
     @Output() pageIndexClickChange: EventEmitter<number> = new EventEmitter();
 
-    @Input() nsShowSizeChanger = true;
-    @Input() nsShowTotal = true;
     @Input() jumpText = 'Goto';
+
     @Input()
     set pageIndex(value: number) {
+        if (this.icurrent === value
+            || value < this.ifirstIndex
+            || value > this.ilastIndex
+            || this.ilastIndex == 1) { return; }
 
-        if (value < this.ifirstIndex) {
-            value = this.ifirstIndex;
-        }
-        if (this.icurrent === value) { return; }
         this.icurrent = Number(value);
         this.buildIndexes();
     }
@@ -41,7 +44,6 @@ export class PaginationComponent implements OnInit {
 
     @Input()
     set pageSize(value: number) {
-
         if (!value || value == this.ipageSize) {
             return;
         }
@@ -59,7 +61,6 @@ export class PaginationComponent implements OnInit {
 
     @Input()
     set total(value: number) {
-
         if (value == this.itotal) { return; }
         this.itotal = value;
         this.buildIndexes();
@@ -70,21 +71,48 @@ export class PaginationComponent implements OnInit {
     }
 
     @Input()
-    set nsPageSizeSelectorValues(value: number[]) {
+    set nsShowSizeChanger(value:boolean){
+        value = toBoolean(value);
+        this.iShowSizeChanger=value;
+    }
 
+    get nsShowSizeChanger(){
+        return this.iShowSizeChanger;
+    }
+
+    @Input()
+    set nsShowTotal(value:boolean){
+        value = toBoolean(value);
+        this.iShowTotal=value;
+    }
+
+    get nsShowTotal(){
+        return this.iShowTotal;
+    }
+
+    @Input()
+    set nsShowJumper(value:boolean){
+        value = toBoolean(value);
+        this.iShowJumper=value;
+    }
+
+    get nsShowJumper(){
+        return this.iShowJumper;
+    }
+
+    @Input()
+    set nsPageSizeSelectorValues(value: number[]) {
         if (value) {
             this.sizeOptions = value;
         }
     }
 
-
     // 生成列表项
     buildIndexes(): void {
         this.ilastIndex = Math.ceil(this.itotal / this.ipageSize);
         if (this.ilastIndex && this.icurrent > this.ilastIndex) {
-            this.pageIndex = this.ilastIndex;
+            this.icurrent = this.ilastIndex;
             this.pageIndexChange.emit(this.pageIndex);
-            return;
         }
 
         const tempPages = [];
@@ -153,10 +181,6 @@ export class PaginationComponent implements OnInit {
 
     get isLastIndex(): boolean {
         return this.icurrent === this.ilastIndex;
-    }
-
-    ngOnInit() {
-        // this.buildIndexes();
     }
 
 }

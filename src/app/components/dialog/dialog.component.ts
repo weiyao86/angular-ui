@@ -2,6 +2,7 @@ import { AfterContentInit, AfterViewInit, Component, ComponentRef, HostListener,
 
 import { SModalSubject } from './dialog-subject-service';
 import globalMonitorUtil from '../../utils/global-monitor';
+import { toBoolean } from '../../utils/common';
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -41,8 +42,7 @@ export class DialogComponent implements AfterContentInit, AfterViewInit, OnDestr
     //显示boolean值
     @Input()
     set visible(value: boolean) {
-
-        value = this.toBoolean(value);
+        value = toBoolean(value);
         if (this.iVisible == value) return;
         if (value) {
             this.animateFade("enter");
@@ -79,7 +79,6 @@ export class DialogComponent implements AfterContentInit, AfterViewInit, OnDestr
     //宽度
     @Input()
     set width(value: string | number) {
-
         this.iwidth = typeof value === 'number' ? value + 'px' : value;
     }
 
@@ -92,7 +91,6 @@ export class DialogComponent implements AfterContentInit, AfterViewInit, OnDestr
     //标题
     @Input()
     set title(value: string | TemplateRef<void>) {
-
         if (value instanceof TemplateRef) {
             this.ititleTpl = value;
         } else {
@@ -115,9 +113,7 @@ export class DialogComponent implements AfterContentInit, AfterViewInit, OnDestr
     //内容(字符串/模板/外部组件)
     @Input()
     set content(value: string | TemplateRef<void> | ComponentFactory<void>) {
-
         if (value instanceof ComponentFactory) {
-
             // 如果容器对象已存在，则直接渲染，如果不存在，则设置到_bodyComponent，在ngAfterViewInit中执行
             if (this.bodyEl) {
                 const cmpRef: ComponentRef<void> = this.bodyEl.createComponent(value, null, this.vcr.injector);
@@ -131,18 +127,6 @@ export class DialogComponent implements AfterContentInit, AfterViewInit, OnDestr
         } else {
             this.icontent = value;
         }
-
-        this.subject.subscribe(ret => {
-            //console.log(ret);
-        })
-        // subject.on('onShow',() =>
-        //   console.log('onShow');
-        // })
-
-        //ret == documentClick
-        globalMonitorUtil.navItemSource.subscribe(ret => {
-            //console.log(ret);
-        })
     }
 
     //渲染内容参数
@@ -154,7 +138,6 @@ export class DialogComponent implements AfterContentInit, AfterViewInit, OnDestr
     //页脚(是否显示/模板)
     @Input()
     set footer(value: boolean | TemplateRef<void>) {
-
         if (value instanceof TemplateRef) {
             this.footerTpl = value;
         } else {
@@ -185,7 +168,6 @@ export class DialogComponent implements AfterContentInit, AfterViewInit, OnDestr
     }
 
     close(): void {
-
         this.visible = false;
     }
 
@@ -218,7 +200,6 @@ export class DialogComponent implements AfterContentInit, AfterViewInit, OnDestr
     }
 
     setStyles(origin?: { x: number, y: number }): void {
-
         const el = this.contentEl.nativeElement;
         const transformOrigin = origin ? `${origin.x - el.offsetLeft}px ${origin.y - el.offsetTop}px` : '';
 
@@ -231,12 +212,7 @@ export class DialogComponent implements AfterContentInit, AfterViewInit, OnDestr
         };
     }
 
-    toBoolean(value: boolean | string): boolean {
-        return value === '' || (value && value !== 'false');
-    }
-
     ngAfterViewInit(): void {
-
         if (this.bodyCmp) {
             const cmpRef: ComponentRef<void> = this.bodyEl.createComponent(this.bodyCmp, null, this.vcr.injector);
             Object.assign(cmpRef.instance, this.icomponentParams);

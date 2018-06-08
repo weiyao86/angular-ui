@@ -16,6 +16,7 @@ export class BaseOptions {
     onCancel: () => void;
 }
 
+//模态窗口配置
 export class ModalOptions extends BaseOptions {
 
     coloseable = true;
@@ -23,6 +24,7 @@ export class ModalOptions extends BaseOptions {
     componentParams: object;
 }
 
+//确认窗口配置
 export class ConfirmOptions extends BaseOptions {
 
     iconType: string;

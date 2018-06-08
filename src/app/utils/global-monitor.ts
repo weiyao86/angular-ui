@@ -19,7 +19,6 @@ export class GlobalMonitorUtil implements OnDestroy{
   }
 
   observeGlobalEvents():void{
-        
     //监听document的点击事件,记录点击坐标,并抛出documentClick事件
     document.addEventListener('click', (e) => {
       this.lastClickPos = {
@@ -28,16 +27,14 @@ export class GlobalMonitorUtil implements OnDestroy{
       }
 
       this.navItemSource.emit({type:'documentClick',e:e});
-    }); 
+    });
   }
 
   constructor(){
-
     this.observeGlobalEvents();
   }
 
   ngOnDestroy():void{
-    alert('a')
   }
 }
 
