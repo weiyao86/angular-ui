@@ -1,0 +1,43 @@
+<section class="banner v-middle">
+    <a href="/" class="logo-wrapper">
+        <img src="http://res2.dev.servision.com.cn/tis/logo/MAXUS.png">
+    </a>
+    <div id="header-search-box" class="header-searxh-box">
+        <div class="search-input-wrapper">
+            <input name="q" class="header-input" value="" placeholder="配件编码、配件名称或VIN" autocomplete="off">
+            <div id="search-tips-wrapper" class="search-tips">
+                <script type="text/template" id="search-tip-template">
+                    {{#data}}
+                    <a href="/tinyepc-web/search?q={{input}}" class="search-tip-item clearfix">
+                        <span class="text">{{output}}</span>
+                        <span class="tip-btn delete-btn" data-action="delete">删除</span>
+                    </a>
+
+                    {{/data}}
+                    <div class="clear-btn-wrapper clearfix">
+                        <a href="javascript:;" class="tip-btn close-btn" data-action="close">关闭</a>
+                        <a href="javascript:;" class="tip-btn clear-btn" data-action="reset">清空</a>
+                    </div>
+                </script>
+            </div>
+        </div>
+
+
+        <!--     <a href="javascript:;" class="header-search-btn btn-two v-middle">
+      <i class="icon iconfont icon-search"></i>
+      <span class="text">搜索</span>
+    </a> -->
+
+        <s-button type="primary" size="small" class="banner-search-btn" (onClickCallback)="search($event)">
+
+            <s-icon type="search" size="16px" color="#fff"></s-icon>
+            <span>搜索</span>
+        </s-button>
+
+        <a href="/tinyepc-web/ksk" class="ksk-purchase">线束订购</a>
+
+
+    </div>
+
+
+</section>

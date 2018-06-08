@@ -1,0 +1,103 @@
+/* svg style*/
+.svg-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.svg-wrap svg {
+     width: 100%;
+     height: 100%;
+     position:relative;
+}
+
+.legend-toolbar {
+    height: 30px;
+    border-radius: 5px;
+    background: #00bcbc;
+    position: absolute;
+    z-index:60;
+    margin: 5px;
+}
+
+.legend-toolbar a {
+    display: inline-block;
+    float: left;
+    height: 18px;
+    margin: 6px 5px;
+    width: 18px;
+    background: url("../../../assets/styles/images/svg-tool-bg.png") no-repeat;
+    cursor: pointer;
+}
+
+/* reset */
+.legend-toolbar .legend-toolbar-reset {
+    background-position: 0 0;
+    
+}
+
+.legend-toolbar .legend-toolbar-reset:hover {
+    background-position: -22px 0;
+}
+
+.legend-toolbar .legend-toolbar-reset.disabled {
+    background-position: -47px 0;
+}
+
+/* zoomout */
+.legend-toolbar .legend-toolbar-zoomout {
+    background-position: 0 -26px;
+}
+
+.legend-toolbar .legend-toolbar-zoomout:hover {
+    background-position: -23px -26px;
+}
+
+.legend-toolbar .legend-toolbar-zoomout.disabled {
+    background-position: -47px -26px;
+}
+
+/* zoomin */
+.legend-toolbar .legend-toolbar-zoomin {
+    background-position: 0 -54px;
+}
+
+.legend-toolbar .legend-toolbar-zoomin:hover {
+    background-position: -23px -54px;
+}
+
+.legend-toolbar .legend-toolbar-zoomin.disabled {
+    background-position: -47px -54px;
+}
+
+/* left rotate */
+.legend-toolbar .legend-toolbar-left-rotate{
+    background-position: 0 -160px;
+}
+
+.legend-toolbar .legend-toolbar-left-rotate:hover {
+    background-position: -22px -160px;
+}
+
+.legend-toolbar .legend-toolbar-left-rotate.disabled {
+    background-position: -47px -160px;
+}
+
+/* right rotate */
+.legend-toolbar .legend-toolbar-right-rotate {
+    background-position: 0 -188px;
+}
+
+.legend-toolbar .legend-toolbar-right-rotate:hover {
+    background-position: -22px -188px;
+}
+
+.legend-toolbar .legend-toolbar-right-rotate.disabled {
+    background-position: -47px -188px;
+}

@@ -1,0 +1,47 @@
+.crumb {
+    line-height: 35px;
+    height: 35px;
+    padding: 0 20px;
+    background: #25415f;
+    color: #aeaeb6;
+
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .crumb-item {
+        color: #ffffff;
+        cursor: pointer;
+
+        s-icon {
+            color: #ffffff;
+            margin: 0 10px 0 20px;
+        }
+
+        .text {
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        &:first-child {
+
+            s-icon {
+                display: none;
+            }
+        }
+
+        &:last-child {
+            cursor: text;
+
+            .text {
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

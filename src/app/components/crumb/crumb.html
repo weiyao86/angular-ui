@@ -1,0 +1,11 @@
+<div class="crumb">
+    <a class="crumb-item"
+       *ngFor="let item of items;"
+       [routerLink]="[item.path]"
+       [queryParams]="item.queryParams"
+       (click)="onClickItem.emit(item)"
+    >
+        <s-icon type="arrow-right"></s-icon>
+        <span class="text">{{item.text}}</span>
+    </a>
+</div>

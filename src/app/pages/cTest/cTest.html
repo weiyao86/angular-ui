@@ -1,0 +1,98 @@
+页头
+<app-header></app-header>
+
+<!-- 身体 -->
+<section class="wrapper clearfix">
+
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);">
+        <s-button type="primary" (onClickCallback)="showModal($event,modalContent)">
+            <i class="anticon anticon-download"></i>
+            <span>弹出框</span>
+        </s-button>
+
+        <s-button type="primary" (onClickCallback)="showDropdown($event,modalContent)">
+            <i class="anticon anticon-download"></i>
+            <span>下拉框</span>
+        </s-button>
+
+        <s-button #overBtn type="primary" (onClickCallback)="clickOverlay($event,overlayMenuList)">
+            <span> ClickOverlay</span>
+        </s-button>
+
+        <ng-template #overlayMenuList>
+            <div class="fab-menu-panel">
+                <div>
+                    <a (click)="clickOverlay($event,overlayMenuList)">新增信件</a>
+                    <a (click)="clickOverlay($event,overlayMenuList)">管理聯絡人</a>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template #modalContent>
+            <p> 对话框的内容2 </p>
+            <p> 对话框的内容3 </p>
+            <p> 对话框的内容4 </p>
+        </ng-template>
+
+        <blockquote>
+            <q>分页</q>
+            <s-pagination [pageSize]="0" [pageIndex]="0" [total]="50" (pageSizeChanger)="pageSizeChanger($event)" (pageIndexClickChange)="pageIndexClickChange($event)" (pageIndexChange)="pageIndexChange($event)"></s-pagination>
+            <!-- [pageSize]="105" [pageIndex]="3" [total]="0" -->
+        </blockquote>
+        <form>
+            No1.
+            <input type="text" name="name1" appSurveyInput> No2.
+            <input name="name2" appSurveyInput> No3.
+            <input name="name3" appSurveyInput>
+        </form>
+
+
+        <div class="portal-demo">
+            <div class="tabs">
+                <button (click)="changePortal1()">功能1</button>
+                <button (click)="changePortal2()">功能2</button>
+                <button (click)="changePortal3()">功能3</button>
+                <button (click)="changePortal4()">功能4</button>
+            </div>
+            <div>
+                <!--<div></div>-->
+                <ng-template [cdkPortalOutlet]="currentPortal"></ng-template>
+                <ng-template cdkPortal let-name="nameInObject">
+                    <p>
+                        功能1：我放在ng-template + cdkPortal = TemplatePortal裡面,传递的参数是:{{name}}
+                    </p>
+                </ng-template>
+                <p *cdkPortal>
+                    功能2：我放在一般的HTML Element內，加上cdkPortal後變成了一個TemplatePortal
+                </p>
+                <ng-template #template let-name="nameInObject">
+                    <p>
+                        功能3：我放在ng-template內，但不是TemplatePortal，要用我要記得先包裝一下传递的参数是: {{name}}
+                    </p>
+                </ng-template>
+            </div>
+        </div>
+
+        <!-- <ng-template #arrowicon>.</ng-template>
+        <s-combox nsShowSearch style="width:300px;" [arrowIconTef]="arrowicon" [bodyStyleMap]="{'width':'300px','background':'#ccc'}" (nsSearchChange)="searchChange($event);" [(ngModel)]="selectedOption" (ngModelChange)="comboxChange(selectedOption);">
+            <s-option *ngFor="let option of options" [sName]="option.name" [sValue]="option">
+                <ng-template #sOptionTemplate>
+                    <span style="color:#f00;">{{option.name}}---{{option.value}}</span>
+                </ng-template>
+            </s-option>
+        </s-combox> -->
+
+        <s-combox disabled nsShowSearch style="width:300px;" (nsSearchChange)="searchChange($event);" bodyClass="test abcdcls warp-cls" [(ngModel)]="selectedOption" (ngModelChange)="comboxChange(selectedOption);">
+            <s-option *ngFor="let option of options" [sName]="option.name" [sValue]="option">
+                <ng-template #sOptionTemplate>
+                    <span style="color:#c00;">{{option.name}}---{{option.value}}</span>
+                </ng-template>
+            </s-option>
+        </s-combox>
+
+        <s-dialog [visible]=" isvisible " content="content test " (onCancelCallback)="handleCancel($event) " (onOkCallback)="handleOk($event) "></s-dialog>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<app-footer></app-footer>

@@ -1,0 +1,23 @@
+.s-tabs-title{
+	width: 100%;
+	border-bottom: 1px solid #108ee9;
+	height: 40px;
+	.s-tabs-item{
+		display: inline-block;
+		height: 39px;
+		width: 80px;
+		line-height: 38px;
+		text-align: center;
+		border: 1px solid #d8dce5;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+		text-decoration: none;
+			font-size: 16px;
+			color: #5a5e66;
+		&.active{
+			border-color: #108ee9;
+			background-color: #108ee9;
+			color: #fff;
+		}
+	}
+}
